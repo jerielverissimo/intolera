@@ -7,6 +7,7 @@ import '../widgets/forgot_password_button_widget.dart';
 import '../widgets/password_input_widget.dart';
 import '../widgets/remember_me_checkbox_widget.dart';
 import '../widgets/signup_button_widget.dart';
+import '../widgets/background_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   bool _rememberMe = false;
 
   @override
@@ -24,20 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Stack(
           children: <Widget>[
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFFff4081),
-                    Color(0xFFffab40),
-                  ],
-                ),
-              ),
-            ),
+            buildBackground(),
             Container(
               height: double.infinity,
               child: SingleChildScrollView(
@@ -61,10 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 30.0),
                     password_input,
                     forgot_password_button_widget,
-                    RememberMeCheckboxWidget((value) {setState(() {
-                          _rememberMe = value;
-                    });}, _rememberMe).
-                    buildRemeberMeCheckbox(),
+                    RememberMeCheckboxWidget((value) {
+                      setState(() {
+                        _rememberMe = value;
+                      });
+                    }, _rememberMe)
+                        .buildRemeberMeCheckbox(),
                     login_button,
                     sign_with_text,
                     social_button_row,

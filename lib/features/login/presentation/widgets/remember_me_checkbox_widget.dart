@@ -13,7 +13,7 @@ import '../utilities/styles.dart';
               value: false,
               checkColor: Colors.green,
               activeColor: Colors.white,
-              onChanged: switchState(),
+              onChanged: (value) => switchState(value),
             ),
           ),
           Text(

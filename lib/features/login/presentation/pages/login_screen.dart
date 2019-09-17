@@ -7,6 +7,7 @@ import '../widgets/email_input_text_widget.dart';
 import '../widgets/forgot_password_button_widget.dart';
 import '../widgets/password_input_widget.dart';
 import '../widgets/remember_me_checkbox_widget.dart';
+import '../widgets/signup_button_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

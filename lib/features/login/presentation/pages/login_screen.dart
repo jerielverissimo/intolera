@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       login_button,
                       sign_with_text,
                       social_button_row,
-                      sign_with_text,
+                      signup_button,
                     ],
                   ),
                 ),

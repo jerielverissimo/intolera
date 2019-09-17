@@ -1,0 +1,82 @@
+os: linux
+
+dist: trusty
+jdk: oraclejdk8
+
+language: node_js
+node_js:
+  - "12"
+
+env:
+  global:
+    - ANDROID_SDK_ROOT=/opt/android
+
+sudo: required
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test 
+    packages:
+      - libstdc++6
+      - fonts-droid
+      - curl
+
+before_install:
+  # Execute Intolera prebuild webhook.
+  - ./.travis/10_prebuild.sh $WEBHOOK_URL
+
+before_script:
+ # Setup gradle.
+  - wget https://services.gradle.org/distributions/gradle-4.10.3-bin.zip
+  - unzip -qq gradle-4.10.3-bin.zip
+  - export GRADLE_HOME=`pwd`/gradle-4.10.3
+  - export PATH=$GRADLE_HOME/bin:$PATH
+
+  # (Quick fix: Silence sdkmanager warning)
+  - mkdir -p /home/travis/.android
+  - echo 'count=0' > /home/travis/.android/repositories.cfg
+
+  # Download and setup Android SDK tools.
+  - wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+  - mkdir android-sdk-tools
+  - unzip -qq sdk-tools-linux-4333796.zip -d android-sdk-tools
+  - export PATH=`pwd`/android-sdk-tools/tools/bin:$PATH
+  - mkdir -p $ANDROID_SDK_ROOT
+  
+  # This will install the Android SDK 28 using the previously installed SDK tools.
+  - yes | sdkmanager --sdk_root=$ANDROID_SDK_ROOT "tools" "build-tools;28.0.3" "extras;android;m2repository" > /dev/null
+  - export PATH=${ANDROID_SDK_ROOT}/tools/bin:$PATH
+
+  # List sdkmanager packages
+  # (useful when checking the logs)
+  - sdkmanager --list
+  - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+  
+  # Add Flutter to the PATH environment variable.
+  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  - gem install coveralls-lcov
+script:
+  - flutter doctor
+  #- ./flutter/bin/flutter test test/features/*
+  - ./flutter/bin/flutter -v build apk --release
+
+after_success:
+  - export AUTHOR_NAME=`git log -1 "$TRAVIS_COMMIT" --pretty="%aN"`
+  - export COMMITTER_NAME=`git log -1 "$TRAVIS_COMMIT" --pretty="%cN"`
+  - export COMMIT_SUBJECT=`git log -1 "$TRAVIS_COMMIT" --pretty="%s"`
+  - export COMMIT_MESSAGE=`git log -1 "$TRAVIS_COMMIT" --pretty="%b"`
+  # Upload to WeTransfer
+  - npm install --save @wetransfer/js-sdk
+  - export BUILD_OUTPUT_URL=`node ./.travis/utils/runUpload.js`
+  - coveralls-lcov coverage/lcov.info
+  # Post in chat
+  - ./.travis/40_postbuild.sh success $WEBHOOK_URL $BUILD_OUTPUT_URL
+
+after_failure:
+  - ./.travis/40_postbuild.sh failure $WEBHOOK_URL
+
+cache:
+  directories:
+    - $HOME/.pub-cache
+    - node_modules

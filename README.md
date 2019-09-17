@@ -1,4 +1,4 @@
-# intolera
+# Intolera [![Build Status](https://travis-ci.com/jerielverissimo/intolera.svg?token=o6qiVVGEAKxpHfwgX5xb&branch=master)](https://travis-ci.com/jerielverissimo/intolera) 
 
 A new Flutter project.
 

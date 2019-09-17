@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:intolera/features/login/presentation/pages/login_screen.dart';
 import '../utilities/styles.dart';
 
 
-  Widget buildRemeberMeCheckbox(Function switchState) {
+
+
+class RememberMeCheckboxWidget {
+  final Function stateSetter;
+  final rememberMe;
+
+  RememberMeCheckboxWidget(this.stateSetter, this.rememberMe);
+
+  Widget buildRemeberMeCheckbox() {
     return Container(
       height: 20.0,
       child: Row(
@@ -10,10 +19,10 @@ import '../utilities/styles.dart';
           Theme(
             data: ThemeData(unselectedWidgetColor: Colors.white),
             child: Checkbox(
-              value: false,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) => switchState(value),
+                value: rememberMe,
+                checkColor: Colors.green,
+                activeColor: Colors.white,
+                onChanged: this.stateSetter,
             ),
           ),
           Text(
@@ -24,3 +33,5 @@ import '../utilities/styles.dart';
       ),
     );
   }
+}
+

@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   bool _rememberMe = false;
 
   @override
@@ -31,10 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFFff80ab),
-                    Color(0xFFffac40),
+                    Color(0xFFff4081),
+                    Color(0xFFffab40),
                   ],
-                  stops: [0.1, 0.9],
                 ),
               ),
             ),
@@ -61,11 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 30.0),
                     password_input,
                     forgot_password_button_widget,
-                    buildRemeberMeCheckbox((value) {
-                      setState(() {
-                        _rememberMe = value;
-                      });
-                    }),
+                    RememberMeCheckboxWidget((value) {setState(() {
+                          _rememberMe = value;
+                    });}, _rememberMe).
+                    buildRemeberMeCheckbox(),
                     login_button,
                     sign_with_text,
                     social_button_row,

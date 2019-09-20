@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utilities/styles.dart';
 
 final login_button = Container(
   padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -10,11 +11,11 @@ final login_button = Container(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(30.0),
     ),
-    color: Colors.white,
+    color: alertColor,
     child: Text(
       'LOGIN',
       style: TextStyle(
-        color: Color(0xFFff5252),
+        color: Colors.white,
         letterSpacing: 1.5,
         fontSize: 18.0,
         fontWeight: FontWeight.bold,

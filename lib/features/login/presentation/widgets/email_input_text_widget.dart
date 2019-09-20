@@ -16,7 +16,7 @@ final email_input_text = Column(
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black87,
           fontFamily: 'OpenSans',
         ),
         decoration: InputDecoration(
@@ -24,7 +24,7 @@ final email_input_text = Column(
           contentPadding: EdgeInsets.only(top: 14.0),
           prefixIcon: Icon(
             Icons.email,
-            color: Colors.white,
+            color: Colors.black54,
           ),
           hintText: 'Enter your Email',
           hintStyle: kHintTextStyle,

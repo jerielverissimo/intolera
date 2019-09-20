@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) => {
-        runApp(Intolera()),
-      });
-} 
+            runApp(Intolera()),
+          });
+}
 
 class Intolera extends StatelessWidget {
   @override

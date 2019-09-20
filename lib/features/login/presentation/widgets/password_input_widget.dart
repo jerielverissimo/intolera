@@ -16,7 +16,7 @@ final password_input = Column(
       child: TextField(
         obscureText: true,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black87,
           fontFamily: 'OpenSans',
         ),
         decoration: InputDecoration(
@@ -24,7 +24,7 @@ final password_input = Column(
           contentPadding: EdgeInsets.only(top: 14.0),
           prefixIcon: Icon(
             Icons.lock,
-            color: Colors.white,
+            color: Colors.black54,
           ),
           hintText: 'Enter your Password',
           hintStyle: kHintTextStyle,

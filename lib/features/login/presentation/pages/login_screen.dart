@@ -42,7 +42,7 @@ class _LoginScreen extends State<LoginScreen> {
                       });
                     }, _rememberMe)
                         .buildRemeberMeCheckbox(),
-                    login_button,
+                    LoginButton(),
                   ],
                 ),
               ),

@@ -19,11 +19,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buttonAction(IconData icon) {
+  Widget _buttonAction(asset) {
     return InkWell(
       child: Padding(
         padding: EdgeInsets.all(8.0),
-        child: Icon(icon),
+        child: asset,
       ),
       onTap: () {},
     );
@@ -32,9 +32,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomAppBar(
-      notchMargin: 8.0,
-      shape: CircularNotchedRectangle(),
-    ));
+      bottomNavigationBar: BottomAppBar(
+        notchMargin: 8.0,
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _buttonAction(Icon(Icons.home)),
+            SizedBox(width: 48.0),
+            _buttonAction(Icon(Icons.person)),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: ImageIcon(AssetImage('assets/icons/barcode-scan.png')),
+        onPressed: () {},
+      ),
+      //body: _body(),
+    );
   }
 }

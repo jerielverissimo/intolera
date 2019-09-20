@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buttonAction(asset) {
     return InkWell(
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(12.0),
         child: asset,
       ),
       onTap: () {},

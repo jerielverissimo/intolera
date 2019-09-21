@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utilities/styles.dart';
-import '../pages/login_screen.dart';
+import '../../../core/presentation/utilities/styles.dart';
 import '../../../dashboard/presentation/pages/dashboard_screen.dart';
 
 class LoginButton extends StatelessWidget {

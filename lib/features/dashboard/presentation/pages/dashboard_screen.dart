@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../text_recognition/presentation/pages/camera_preview_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +26,12 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(12.0),
         child: asset,
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CameraPreviewScreen()),
+        );
+      },
     );
   }
 

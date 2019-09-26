@@ -26,12 +26,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(12.0),
         child: asset,
       ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CameraPreviewScreen()),
-        );
-      },
+      onTap: () {},
     );
   }
 
@@ -54,7 +49,12 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: ImageIcon(AssetImage('assets/icons/barcode-scan.png')),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CameraPreviewScreen()),
+          );
+        },
       ),
       //body: _body(),
     );

@@ -13,6 +13,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.4.0
   image_picker: 0.6.1+4
+  equatable: ^0.4.0
+  dartz: ^0.8.6
 
 dev_dependencies:
   flutter_test:

@@ -9,11 +9,11 @@ class FoodProfile extends Equatable {
   final List<ProcessedFood> processedsFoods;
 
   FoodProfile({
-    @required String this.category,
-    @required List<Food> this.foodsToExclude,
-    @required List<Ingredient> this.ingredientsOnLabeling,
+    @required this.category,
+    @required this.foodsToExclude,
     @required this.recipes,
     @required this.processedsFoods,
+    this.ingredientsOnLabeling,
   }) : super(
           [
             category,
@@ -28,7 +28,7 @@ class FoodProfile extends Equatable {
 class TypeValue extends Equatable {
   final String name;
 
-  TypeValue({@required String this.name}) : super([name]);
+  TypeValue({@required this.name}) : super([name]);
 }
 
 class Food extends TypeValue {

@@ -1,4 +1,4 @@
-import 'package:intolera/core/error/failures.dart';
+import 'package:intolera/features/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

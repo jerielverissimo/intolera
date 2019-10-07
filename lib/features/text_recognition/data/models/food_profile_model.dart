@@ -5,9 +5,9 @@ class FoodProfileModel extends FoodProfile {
   FoodProfileModel({
     @required category,
     @required foodsToExclude,
-    @required ingredientsOnLabeling,
     @required recipes,
     @required processedsFoods,
+    ingredientsOnLabeling,
   }) : super(
           category: category,
           foodsToExclude: foodsToExclude,
@@ -17,18 +17,23 @@ class FoodProfileModel extends FoodProfile {
         );
 
   factory FoodProfileModel.fromJson(Map<String, dynamic> json) {
-    return FoodProfileModel(
-      category: json['category'],
-      foodsToExclude:
-          json['foodsToExclude'].map<Food>((s) => Food(name: s)).toList(),
-      ingredientsOnLabeling: json['ingredientsOnLabeling']
-          .map<Ingredient>((s) => Ingredient(name: s))
-          .toList(),
-      recipes: json['recipes'].map<Recipe>((s) => Recipe(name: s)).toList(),
-      processedsFoods: json['processedsFoods']
-          .map<ProcessedFood>((s) => ProcessedFood(name: s))
-          .toList(),
-    );
+    return json['category'] == null
+        ? null
+        : FoodProfileModel(
+            category: json['category'],
+            foodsToExclude:
+                json['foodsToExclude'].map<Food>((s) => Food(name: s)).toList(),
+            ingredientsOnLabeling: json['ingredientsOnLabeling'] != null
+                ? json['ingredientsOnLabeling']
+                    .map<Ingredient>((s) => Ingredient(name: s))
+                    .toList()
+                : null,
+            recipes:
+                json['recipes'].map<Recipe>((s) => Recipe(name: s)).toList(),
+            processedsFoods: json['processedsFoods']
+                .map<ProcessedFood>((s) => ProcessedFood(name: s))
+                .toList(),
+          );
   }
 
   Map<String, dynamic> toJson() {

@@ -13,6 +13,13 @@ void main() {
     processedsFoods: [ProcessedFood(name: 'processed')],
   );
 
+  final tFoodProfileModelWithoutIngredient = FoodProfileModel(
+    category: 'Test',
+    foodsToExclude: [Food(name: 'food'), Food(name: 'drink')],
+    recipes: [Recipe(name: 'recipe')],
+    processedsFoods: [ProcessedFood(name: 'processed')],
+  );
+
   test('should be a subclass of FoodProfile', () async {
     // assert
     expect(tFoodProfileModel, isA<FoodProfile>());
@@ -28,6 +35,30 @@ void main() {
       final result = FoodProfileModel.fromJson(jsonMap);
       // assert
       expect(result, tFoodProfileModel);
+    });
+
+    test(
+        'should return a valid model when the JSON ingredientsOnLabeling is not present',
+        () async {
+      // arrange
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('food_profile_without_ingredients.json'));
+      // act
+      final result = FoodProfileModel.fromJson(jsonMap);
+      // assert
+      expect(result, tFoodProfileModelWithoutIngredient);
+    });
+
+    test(
+        'should not return a valid model when the JSON category is not present',
+        () async {
+      // arrange
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('food_profile_without_category.json'));
+      // act
+      final result = FoodProfileModel.fromJson(jsonMap);
+      // assert
+      expect(result, null);
     });
   });
 

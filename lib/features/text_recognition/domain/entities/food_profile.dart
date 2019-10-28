@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class FoodProfile extends Equatable {
-  final String category; // TODO: Transform to Enum?
+  final String category;
   final List<Food> foodsToExclude;
   final List<Ingredient> ingredientsOnLabeling;
   final List<Recipe> recipes;
@@ -25,24 +25,22 @@ class FoodProfile extends Equatable {
         );
 }
 
-class TypeValue extends Equatable {
+class Food extends Equatable {
   final String name;
-
-  TypeValue({@required this.name}) : super([name]);
+  Food({@required this.name});
 }
 
-class Food extends TypeValue {
-  Food({@required String name}) : super(name: name);
+class Ingredient extends Equatable {
+  final String name;
+  Ingredient({@required this.name});
 }
 
-class Ingredient extends TypeValue {
-  Ingredient({@required String name}) : super(name: name);
+class Recipe extends Equatable {
+  final String name;
+  Recipe({@required this.name});
 }
 
-class Recipe extends TypeValue {
-  Recipe({@required String name}) : super(name: name);
-}
-
-class ProcessedFood extends TypeValue {
-  ProcessedFood({@required String name}) : super(name: name);
+class ProcessedFood extends Equatable {
+  final String name;
+  ProcessedFood({@required this.name});
 }

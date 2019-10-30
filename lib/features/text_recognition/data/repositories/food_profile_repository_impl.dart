@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/platform/network_info.dart';
+import '../../../core/network/network_info.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/error/exceptions.dart';
 import '../../../text_recognition/domain/entities/food_profile.dart';

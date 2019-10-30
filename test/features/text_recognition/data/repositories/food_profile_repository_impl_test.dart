@@ -1,6 +1,6 @@
 import 'package:intolera/features/core/error/exceptions.dart';
 import 'package:intolera/features/core/error/failures.dart';
-import 'package:intolera/features/core/platform/network_info.dart';
+import 'package:intolera/features/core/network/network_info.dart';
 import 'package:intolera/features/text_recognition/data/datasources/food_profile_local_data_source.dart';
 import 'package:intolera/features/text_recognition/data/datasources/food_profile_remote_data_source.dart';
 import 'package:intolera/features/text_recognition/data/repositories/food_profile_repository_impl.dart';

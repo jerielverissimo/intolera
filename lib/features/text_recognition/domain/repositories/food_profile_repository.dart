@@ -1,4 +1,4 @@
-import 'package:intolera/features/core/error/failures.dart';
+import 'package:intolera/core/error/failures.dart';
 import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
 import 'package:dartz/dartz.dart';
 

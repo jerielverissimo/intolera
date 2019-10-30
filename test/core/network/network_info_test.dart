@@ -1,4 +1,4 @@
-import 'package:intolera/features/core/network/network_info.dart';
+import 'package:intolera/core/network/network_info.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/network/network_info.dart';
-import '../../../core/error/failures.dart';
-import '../../../core/error/exceptions.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/error/exceptions.dart';
 import '../../../text_recognition/domain/entities/food_profile.dart';
 import '../../../text_recognition/domain/repositories/food_profile_repository.dart';
 import '../datasources/food_profile_local_data_source.dart';

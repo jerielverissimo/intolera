@@ -47,3 +47,4 @@ class FoodProfileModel extends FoodProfile {
     };
   }
 }
+

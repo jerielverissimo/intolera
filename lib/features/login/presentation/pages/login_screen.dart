@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/presentation/utilities/styles.dart';
+import '../../../../core/presentation/utilities/styles.dart';
 import '../widgets/email_input_text_widget.dart';
 import '../widgets/password_input_widget.dart';
 import '../widgets/login_button_widget.dart';

@@ -29,8 +29,7 @@ void main() {
       'should retrun a FoodProfile list from SharedPreferences when there is one in the cache',
       () async {
         final jsonDecoded = json.decode(fixture('food_profiles_cached.json'));
-        final tProfiles =
-            jsonDecoded.map((p) => FoodProfileModel.fromJson(p)).toList();
+        final tProfiles = FoodProfileTransform.fromListJson(jsonDecoded);
         // arrage
         when(mockSharedPreferences.getString(any))
             .thenReturn(fixture('food_profiles_cached.json'));
@@ -75,8 +74,10 @@ void main() {
       // act
       dataSource.cacheFoodProfiles(tProfiles);
       // assert
-      final expectedJsonString = json.encode(FoodProfileTransform.toListJson(tProfiles));
-      verify(mockSharedPreferences.setString(CACHED_FOOD_PROFILES, expectedJsonString));
+      final expectedJsonString =
+          json.encode(FoodProfileTransform.toListJson(tProfiles));
+      verify(mockSharedPreferences.setString(
+          CACHED_FOOD_PROFILES, expectedJsonString));
     });
   });
 }

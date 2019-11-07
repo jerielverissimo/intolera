@@ -29,10 +29,12 @@ void main() {
     test('should return a valid model when all the JSON properties is present',
         () async {
       // arrange
-      final Map<String, dynamic> jsonMap =
-          json.decode(fixture('food_profile.json'));
+      //final Map<String, dynamic> jsonMap =
+      //json.decode(fixture('food_profile.json'));
+      final jsonMap = json.decode(fixture('food_profiles.json'));
       // act
-      final result = FoodProfileModel.fromJson(jsonMap);
+      //final result = FoodProfileModel.fromJson(jsonMap);
+      final result = jsonMap.map((p) => FoodProfileModel.fromJson(p)).toList();
       // assert
       expect(result, tFoodProfileModel);
     });

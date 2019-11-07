@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../text_recognition/presentation/pages/camera_preview_screen.dart';
+import '../../../text_recognition/presentation/pages/food_profiles.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,13 +21,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buttonAction(asset) {
+  Widget _buttonAction(asset, action) {
     return InkWell(
       child: Padding(
         padding: EdgeInsets.all(12.0),
         child: asset,
       ),
-      onTap: () {},
+      onTap: action,
     );
   }
 
@@ -40,9 +41,18 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _buttonAction(Icon(Icons.home)),
-            SizedBox(width: 48.0),
-            _buttonAction(Icon(Icons.person)),
+            _buttonAction(Icon(Icons.home), () {}),
+            //SizedBox(width: 24.0),
+            _buttonAction(Icon(Icons.assignment), () {}),
+            SizedBox(width: 52.0),
+            _buttonAction(Icon(Icons.assignment), () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FoodProfilePage()),
+              );
+            }),
+            //SizedBox(width: 24.0),
+            _buttonAction(Icon(Icons.person), () {}),
           ],
         ),
       ),

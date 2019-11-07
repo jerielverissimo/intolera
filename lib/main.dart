@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'features/login/presentation/pages/login_screen.dart';
 import 'package:flutter/services.dart';
+import 'injection_container.dart' as di;
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) => {
+      .then((_) async => {
+            await di.init(),
             runApp(Intolera()),
           });
 }

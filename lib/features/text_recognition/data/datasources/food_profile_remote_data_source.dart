@@ -26,7 +26,9 @@ class FoodProfileRemoteDataSourceImpl implements FoodProfileRemoteDataSource {
     final response = await client.get('http://134.209.41.142/profiles',
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
-      return FoodProfileTransform.fromListJson(json.decode(response.body));
+      final profiles =
+          FoodProfileTransform.fromListJson(json.decode(response.body));
+      return profiles;
     } else {
       throw ServerException();
     }

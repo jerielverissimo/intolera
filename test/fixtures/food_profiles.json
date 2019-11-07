@@ -1,0 +1,47 @@
+[
+  {
+    "category": "Trigo",
+    "foods_to_exclude": [
+      "Esparguete e massas",
+      "couscous",
+      "farinha de trigo",
+      "farinhas de trigo parauso culinário",
+      "produtos de pastelaria e padaria (bolos, pastéis, biscoitos, bolachas)",
+      "todos os tipos de pão ou broa",
+      "tostas",
+      "flocos de cereais",
+      "gelados com bolachas ou biscoitos",
+      "papas lácteas e não lácteas com trigo",
+      "chocolates com bolacha",
+      "sopas pré-confecionadas",
+      "molhos",
+      "seitan"
+    ],
+    "ingredients_on_labeling": [
+      "Sêmola de trigo",
+      "semolina",
+      "farelo",
+      "gérmen",
+      "glúten",
+      "malte e amido de trigo",
+      "hidrolisado de farelo de trigo"
+    ],
+    "processed_foods": [
+      "Chocolates e bombons",
+      "patés",
+      "enchidos e produtos de charcutaria",
+      "pão de centeio",
+      "milho",
+      "molho de soja",
+      "delícias do mar"
+    ],
+    "profile_id": "86bcec82-8cee-4f61-a8c8-8e0bd441477c",
+    "recipes": [
+      "(rissóis, croquetes, empadas)",
+      "panados",
+      "piza",
+      "lasanha",
+      "francesinha"
+    ]
+  }
+]

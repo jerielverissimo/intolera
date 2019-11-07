@@ -40,6 +40,8 @@ class FoodProfileRepositoryImpl implements FoodProfileRepository {
       try {
         final remoteProfiles = await remoteDataSource.getFoodProfiles();
         localDataSource.cacheFoodProfiles(remoteProfiles);
+        print('passou por aqui - repository');
+        print(remoteProfiles);
         return Right(remoteProfiles);
       } on ServerException {
         return Left(ServerFailure());

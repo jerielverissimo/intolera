@@ -21,16 +21,17 @@ class FoodProfileModel extends FoodProfile {
         ? null
         : FoodProfileModel(
             category: json['category'],
-            foodsToExclude:
-                json['foodsToExclude'].map<Food>((s) => Food(name: s)).toList(),
-            ingredientsOnLabeling: json['ingredientsOnLabeling'] != null
-                ? json['ingredientsOnLabeling']
+            foodsToExclude: json['foods_to_exclude']
+                .map<Food>((s) => Food(name: s))
+                .toList(),
+            ingredientsOnLabeling: json['ingredients_on_labeling'] != null
+                ? json['ingredients_on_labeling']
                     .map<Ingredient>((s) => Ingredient(name: s))
                     .toList()
                 : null,
             recipes:
                 json['recipes'].map<Recipe>((s) => Recipe(name: s)).toList(),
-            processedsFoods: json['processedsFoods']
+            processedsFoods: json['processed_foods']
                 .map<ProcessedFood>((s) => ProcessedFood(name: s))
                 .toList(),
           );
@@ -47,4 +48,3 @@ class FoodProfileModel extends FoodProfile {
     };
   }
 }
-

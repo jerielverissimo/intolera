@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "529209989872",
+    "firebase_url": "https://intolera-6703f.firebaseio.com",
+    "project_id": "intolera-6703f",
+    "storage_bucket": "intolera-6703f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529209989872:android:39aaac96605e00520b4035",
+        "android_client_info": {
+          "package_name": "br.edu.ifsp.intolera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529209989872-8qph9akvbvhq2d09laf7k6n332vvd37p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPU1Qy5ODrvXB2SiROFlwwQnYTOeSnmhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529209989872-8qph9akvbvhq2d09laf7k6n332vvd37p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

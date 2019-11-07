@@ -20,6 +20,7 @@ dependencies:
   shared_preferences: ^0.5.3+4
   http: ^0.12.0+2
   dartz: ^0.8.6
+  firebase_ml_vision:
 
 dev_dependencies:
   flutter_test:

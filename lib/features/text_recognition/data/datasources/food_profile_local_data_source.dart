@@ -14,7 +14,7 @@ abstract class FoodProfileLocalDataSource {
 
   Future<void> cacheFoodProfiles(List<FoodProfileModel> foodProfiles);
 }
-  
+
 const CACHED_FOOD_PROFILES = 'CACHED_FOOD_PROFILES';
 
 class FoodProfileLocalDataSourceImpl implements FoodProfileLocalDataSource {
@@ -23,20 +23,22 @@ class FoodProfileLocalDataSourceImpl implements FoodProfileLocalDataSource {
   FoodProfileLocalDataSourceImpl({@required this.sharedPreferences});
 
   Future<List<FoodProfileModel>> getLastFoodProfiles() {
+    print('Estou local');
     final jsonString = sharedPreferences.getString(CACHED_FOOD_PROFILES);
 
     if (jsonString != null) {
       final jsonDecoded = json.decode(jsonString);
-      return Future.value(jsonDecoded
-          .map<FoodProfileModel>((p) => FoodProfileModel.fromJson(p))
-          .toList());
+      print(jsonDecoded);
+      return Future.value(
+          jsonDecoded.map((p) => FoodProfileModel.fromJson(p)).toList());
     } else {
+      print('deu merda');
       throw CacheException();
     }
   }
 
   Future<void> cacheFoodProfiles(List<FoodProfileModel> foodProfiles) {
-    return sharedPreferences.setString(CACHED_FOOD_PROFILES, 
+    return sharedPreferences.setString(CACHED_FOOD_PROFILES,
         json.encode(FoodProfileTransform.toListJson(foodProfiles)));
   }
 }

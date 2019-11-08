@@ -6,8 +6,7 @@ import 'package:intolera/core/error/failures.dart';
 import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
-//import '../../domain/usecases/get_food_profile.dart';
-import 'package:intolera/features/text_recognition/domain/usecases/get_food_profiles.dart';
+import '../../domain/usecases/get_food_profiles.dart';
 
 const String SERVER_FAILURE_MESSAGE = 'Server Failure';
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
@@ -25,21 +24,16 @@ class FoodProfileBloc extends Bloc<FoodProfileEvent, FoodProfileState> {
   @override
   Stream<FoodProfileState> mapEventToState(FoodProfileEvent event) async* {
     if (event is GetFoodListProfiles) {
-      print('init');
       yield Loading();
-      print('loading');
       final failureOrProfiles = await getFoodProfiles(NoParams());
-      print('called usecase');
-      yield failureOrProfiles.fold(
-        (failure) => Error(message: _mapFailureToMessage(failure)),
-        (profiles) => Loaded(profiles: profiles),
-      );
+      print('Vou pro carregado!');
+      yield* _eitherLoadedOrErrorState(failureOrProfiles);
     }
   }
 
   Stream<FoodProfileState> _eitherLoadedOrErrorState(
       Either<Failure, List<FoodProfile>> failureOrProfiles) async* {
-    print('Passou por aqui - Either');
+    print('Estou no carregado!');
     yield failureOrProfiles.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),
       (profiles) => Loaded(profiles: profiles),
@@ -47,7 +41,6 @@ class FoodProfileBloc extends Bloc<FoodProfileEvent, FoodProfileState> {
   }
 
   String _mapFailureToMessage(Failure failure) {
-    print('deu merda');
     switch (failure.runtimeType) {
       case ServerFailure:
         return SERVER_FAILURE_MESSAGE;

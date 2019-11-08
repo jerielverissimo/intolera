@@ -1,16 +1,8 @@
-[
-  {
-    "category" : "Test",
-    "foodsToExclude": ["food", "drink"],
-    "ingredientsOnLabeling": ["ingredient"],
-    "recipes": ["recipe"],
-    "processedsFoods": ["processed"]
-  },
-  {
-    "category" : "Test",
-    "foodsToExclude": ["food", "drink"],
-    "ingredientsOnLabeling": ["ingredient"],
-    "recipes": ["recipe"],
-    "processedsFoods": ["processed"]
-  }
-]
+{
+  "category" : "Test",
+  "foodsToExclude": ["food", "drink"],
+  "ingredientsOnLabeling": ["ingredient"],
+  "recipes": ["recipe"],
+  "processedsFoods": ["processed"]
+}
+

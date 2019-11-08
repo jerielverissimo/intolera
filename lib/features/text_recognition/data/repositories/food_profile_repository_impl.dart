@@ -36,12 +36,13 @@ class FoodProfileRepositoryImpl implements FoodProfileRepository {
   }
 
   Future<Either<Failure, List<FoodProfile>>> getFoodProfiles() async {
-    if (await networkInfo.isConnected) {
+    print('estou no repository');
+    final estou_on = await networkInfo.isConnected;
+    print(estou_on);
+    if (estou_on) {
       try {
         final remoteProfiles = await remoteDataSource.getFoodProfiles();
         localDataSource.cacheFoodProfiles(remoteProfiles);
-        print('passou por aqui - repository');
-        print(remoteProfiles);
         return Right(remoteProfiles);
       } on ServerException {
         return Left(ServerFailure());
@@ -49,6 +50,7 @@ class FoodProfileRepositoryImpl implements FoodProfileRepository {
     } else {
       try {
         final localProfiles = await localDataSource.getLastFoodProfiles();
+        print(localProfiles);
         return Right(localProfiles);
       } on CacheException {
         return Left(CacheFailure());

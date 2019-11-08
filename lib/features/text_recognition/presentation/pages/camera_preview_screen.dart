@@ -12,6 +12,7 @@ class CameraPreviewScreen extends StatefulWidget {
 class _CameraPreviewScreen extends State<CameraPreviewScreen> {
   File _image;
   FirebaseVisionImage vImage;
+  final foundedWords = [];
 
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -41,7 +42,8 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
         // Same getters as TextBlock
         for (TextElement element in line.elements) {
           // Same getters as TextBlock
-          print(element.text);
+          foundedWords.add(element.text);
+          print(foundedWords);
         }
       }
     }

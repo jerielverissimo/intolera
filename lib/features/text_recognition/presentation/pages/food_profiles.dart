@@ -111,36 +111,36 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
       appBar: AppBar(
         title: Text('Food Profiles'),
       ),
-      body: _old(context),
+      body: buildBody(context),
       //body: ListView(
-        //children: <Widget>[
-          //SizedBox(height: 40.0),
-          //Padding(
-            //padding: EdgeInsets.symmetric(horizontal: 30.0),
-            //child: Row(
-              //mainAxisAlignment: MainAxisAlignment.start,
-              //children: <Widget>[
-                //Container(
-                  //height: 280.0,
-                  //child: ListView.builder(
-                    //scrollDirection: Axis.horizontal,
-                    //itemCount: categories.length + 1,
-                    //itemBuilder: (BuildContext context, int index) {
-                      //if (index == 0) {
-                        //return SizedBox(width: 20.0);
-                      //}
-                      //return _buildCategoryCard(
-                        //index - 1,
-                        //categories.keys.toList()[index - 1],
-                        //categories.values.toList()[index - 1],
-                      //);
-                    //},
-                  //),
-                //),
-              //],
-            //),
-          //),
-        //],
+      //children: <Widget>[
+      //SizedBox(height: 40.0),
+      //Padding(
+      //padding: EdgeInsets.symmetric(horizontal: 30.0),
+      //child: Row(
+      //mainAxisAlignment: MainAxisAlignment.start,
+      //children: <Widget>[
+      //Container(
+      //height: 280.0,
+      //child: ListView.builder(
+      //scrollDirection: Axis.horizontal,
+      //itemCount: categories.length + 1,
+      //itemBuilder: (BuildContext context, int index) {
+      //if (index == 0) {
+      //return SizedBox(width: 20.0);
+      //}
+      //return _buildCategoryCard(
+      //index - 1,
+      //categories.keys.toList()[index - 1],
+      //categories.values.toList()[index - 1],
+      //);
+      //},
+      //),
+      //),
+      //],
+      //),
+      //),
+      //],
       //),
     );
   }
@@ -151,38 +151,37 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
       child: Center(
         child: Padding(
           padding: EdgeInsets.all(10),
-          child: BlocBuilder<FoodProfileBloc, FoodProfileState>(
-            builder: (context, state) {
-              BlocProvider.of<FoodProfileBloc>(context)
-                  .dispatch(GetFoodListProfiles());
-              if (state is Loaded) {
-                print('Entrou no estatod de LOADED');
-                return Container(
-                  child: Text(state.profiles[3].category),
-                );
-              } else if (state is Empty) {
-                return Center(
-                  child: Row(children: <Widget>[
-                    Text('Empty...'),
-                  ]),
-                );
-              } else if (state is Loading) {
-                return Center(
-                  child: Text('Loading...'),
-                );
-                //return ListView.builder(
-                //itemCount: state.profiles.length,
-                //itemBuilder: (BuildContext context, int index) {
-                //return ListTile(
-                //title: Text(state.profiles[index].category));
-                //},
-                //);
-              } else if (state is Error) {
-                return Center(
-                  child: Text('Error: ' + state.message),
-                );
-              }
-            },
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 10),
+              BlocBuilder<FoodProfileBloc, FoodProfileState>(
+                builder: (context, state) {
+                  if (state is Empty) {
+                    BlocProvider.of<FoodProfileBloc>(context)
+                        .dispatch(GetFoodListProfiles());
+                    return Center(
+                      child: Row(children: <Widget>[
+                        Text('Empty...'),
+                      ]),
+                    );
+                  } else if (state is Loading) {
+                    print('Entrou no estado de LOADING');
+                    return Center(
+                      child: Text('Loading...'),
+                    );
+                  } else if (state is Loaded) {
+                    print('Entrou no estado de LOADED');
+                    return Container(
+                      child: Text(state.profiles[1].category),
+                    );
+                  } else if (state is Error) {
+                    return Center(
+                      child: Text('Error: ' + state.message),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ),
       ),

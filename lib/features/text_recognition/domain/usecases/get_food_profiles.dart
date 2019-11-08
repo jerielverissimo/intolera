@@ -11,6 +11,9 @@ class GetFoodProfiles implements UseCase<List<FoodProfile>, NoParams> {
 
   @override
   Future<Either<Failure, List<FoodProfile>>> call(NoParams params) async {
-    return await repository.getFoodProfiles();
+    final res = await repository.getFoodProfiles();
+    print('resultado ---');
+    print(res);
+    return res;
   }
 }

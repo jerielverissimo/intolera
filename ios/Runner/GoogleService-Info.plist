@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>529209989872-9oiam12161mgobj35o3drj4bqk1iaj65.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.529209989872-9oiam12161mgobj35o3drj4bqk1iaj65</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC25ERrbEFC7_UhLTfUinUWG7I_eIYt4nc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>529209989872</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.edu.ifsp.intolera</string>
+	<key>PROJECT_ID</key>
+	<string>intolera-6703f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>intolera-6703f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:529209989872:ios:97d2d1f288019db00b4035</string>
+	<key>DATABASE_URL</key>
+	<string>https://intolera-6703f.firebaseio.com</string>
+</dict>
+</plist>

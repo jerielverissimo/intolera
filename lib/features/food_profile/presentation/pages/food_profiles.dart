@@ -3,11 +3,6 @@ import '../../presentation/bloc/food_profile_state.dart';
 import '../../presentation/bloc/food_profile_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
-import 'package:intolera/features/text_recognition/data/transforms/food_profile_transform.dart';
-
 import '../../../../injection_container.dart';
 
 class FoodProfilePage extends StatefulWidget {
@@ -20,21 +15,6 @@ class FoodProfilePage extends StatefulWidget {
 }
 
 class _FoodProfilePageState extends State<FoodProfilePage> {
-  Future<List<FoodProfileModel>> _getFoodProfiles() async {
-    var data = await http.get('http://134.209.41.142/profiles');
-
-    var jsonData = json.decode(data.body);
-    print(jsonData);
-
-    List<FoodProfileModel> profiles = [];
-
-    profiles = jsonData
-        .map<FoodProfileModel>((p) => FoodProfileModel.fromJson(p))
-        .toList();
-
-    return profiles;
-  }
-
   int _selectedCategoryIndex = 0;
 
   final Map<String, int> categories = {
@@ -112,36 +92,6 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
         title: Text('Food Profiles'),
       ),
       body: buildBody(context),
-      //body: ListView(
-      //children: <Widget>[
-      //SizedBox(height: 40.0),
-      //Padding(
-      //padding: EdgeInsets.symmetric(horizontal: 30.0),
-      //child: Row(
-      //mainAxisAlignment: MainAxisAlignment.start,
-      //children: <Widget>[
-      //Container(
-      //height: 280.0,
-      //child: ListView.builder(
-      //scrollDirection: Axis.horizontal,
-      //itemCount: categories.length + 1,
-      //itemBuilder: (BuildContext context, int index) {
-      //if (index == 0) {
-      //return SizedBox(width: 20.0);
-      //}
-      //return _buildCategoryCard(
-      //index - 1,
-      //categories.keys.toList()[index - 1],
-      //categories.values.toList()[index - 1],
-      //);
-      //},
-      //),
-      //),
-      //],
-      //),
-      //),
-      //],
-      //),
     );
   }
 
@@ -172,7 +122,21 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
                   } else if (state is Loaded) {
                     print('Entrou no estado de LOADED');
                     return Container(
-                      child: Text(state.profiles[1].category),
+                      height: 280.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.profiles.length + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == 0) {
+                            return SizedBox(width: 20.0);
+                          }
+                          return _buildCategoryCard(
+                            index - 1,
+                            state.profiles.toList()[index - 1].category,
+                            categories.values.toList()[index - 1],
+                          );
+                        },
+                      ),
                     );
                   } else if (state is Error) {
                     return Center(
@@ -188,49 +152,37 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
     );
   }
 
-  void dispatchProfiles() {
-    BlocProvider.of<FoodProfileBloc>(context).dispatch(GetFoodListProfiles());
-  }
-
-  Widget _old(BuildContext context) {
+  Widget _buildCard(BuildContext context) {
     return Container(
-      child: FutureBuilder(
-        future: _getFoodProfiles(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          print(snapshot);
-          if (snapshot.data == null) {
-            return Container(
-              child: Center(
-                child: Text('Loading...'),
-              ),
-            );
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _buildCard(context, snapshot.data[index]);
-              },
-            );
+      height: 280.0,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length + 1,
+        itemBuilder: (BuildContext context, int index) {
+          if (index == 0) {
+            return SizedBox(width: 20.0);
           }
+          return _buildCategoryCard(
+            index - 1,
+            categories.keys.toList()[index - 1],
+            categories.values.toList()[index - 1],
+          );
         },
       ),
     );
-  }
-
-  Widget _buildCard(BuildContext context, FoodProfileModel profile) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.album),
-              title: Text(profile.category),
-              subtitle: Text('Teste'),
-            ),
-          ],
-        ),
-      ),
-    );
+    //Center(
+    //child: Card(
+    //child: Column(
+    //mainAxisSize: MainAxisSize.max,
+    //children: <Widget>[
+    //ListTile(
+    //leading: Icon(Icons.album),
+    //title: Text(profile.category),
+    //subtitle: Text('Teste'),
+    //),
+    //],
+    //),
+    //),
+    //);
   }
 }

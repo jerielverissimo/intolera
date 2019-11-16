@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
 
 @immutable
 abstract class FoodProfileState extends Equatable {

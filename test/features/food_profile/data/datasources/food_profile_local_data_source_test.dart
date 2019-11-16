@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'dart:convert';
 import 'package:matcher/matcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intolera/features/text_recognition/data/datasources/food_profile_local_data_source.dart';
-import 'package:intolera/features/text_recognition/data/transforms/food_profile_transform.dart';
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/data/datasources/food_profile_local_data_source.dart';
+import 'package:intolera/features/food_profile/data/transforms/food_profile_transform.dart';
+import 'package:intolera/features/food_profile/data/models/food_profile_model.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
 import 'package:intolera/core/error/exceptions.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}

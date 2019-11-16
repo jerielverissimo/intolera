@@ -4,8 +4,8 @@ import 'package:meta/meta.dart';
 import '../../../../core/network/network_info.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/error/exceptions.dart';
-import '../../../text_recognition/domain/entities/food_profile.dart';
-import '../../../text_recognition/domain/repositories/food_profile_repository.dart';
+import '../../../food_profile/domain/entities/food_profile.dart';
+import '../../../food_profile/domain/repositories/food_profile_repository.dart';
 import '../datasources/food_profile_local_data_source.dart';
 import '../datasources/food_profile_remote_data_source.dart';
 
@@ -36,10 +36,7 @@ class FoodProfileRepositoryImpl implements FoodProfileRepository {
   }
 
   Future<Either<Failure, List<FoodProfile>>> getFoodProfiles() async {
-    print('estou no repository');
-    final estou_on = await networkInfo.isConnected;
-    print(estou_on);
-    if (estou_on) {
+    if (await networkInfo.isConnected) {
       try {
         final remoteProfiles = await remoteDataSource.getFoodProfiles();
         localDataSource.cacheFoodProfiles(remoteProfiles);

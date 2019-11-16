@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/data/models/food_profile_model.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {

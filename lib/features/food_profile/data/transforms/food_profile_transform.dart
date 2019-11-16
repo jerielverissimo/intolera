@@ -1,4 +1,4 @@
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
+import 'package:intolera/features/food_profile/data/models/food_profile_model.dart';
 
 class FoodProfileTransform {
   static List<Map<String, dynamic>> toListJson(

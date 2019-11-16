@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/network_info.dart';
-import 'features/text_recognition/presentation/bloc/food_profile_bloc.dart';
-import 'features/text_recognition/domain/usecases/get_food_profiles.dart';
-import 'features/text_recognition/data/repositories/food_profile_repository_impl.dart';
-import 'features/text_recognition/domain/repositories/food_profile_repository.dart';
-import 'features/text_recognition/data/datasources/food_profile_remote_data_source.dart';
-import 'features/text_recognition/data/datasources/food_profile_local_data_source.dart';
+import 'features/food_profile/presentation/bloc/food_profile_bloc.dart';
+import 'features/food_profile/domain/usecases/get_food_profiles.dart';
+import 'features/food_profile/data/repositories/food_profile_repository_impl.dart';
+import 'features/food_profile/domain/repositories/food_profile_repository.dart';
+import 'features/food_profile/data/datasources/food_profile_remote_data_source.dart';
+import 'features/food_profile/data/datasources/food_profile_local_data_source.dart';
 
 final sl = GetIt.instance;
 
@@ -23,20 +23,20 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<FoodProfileRepository>(
-      () => FoodProfileRepositoryImpl(
-          localDataSource: sl(),
-          networkInfo: sl(),
-          remoteDataSource: sl(),
-      ),
+    () => FoodProfileRepositoryImpl(
+      localDataSource: sl(),
+      networkInfo: sl(),
+      remoteDataSource: sl(),
+    ),
   );
 
   // Data sources
   sl.registerLazySingleton<FoodProfileRemoteDataSource>(
-      () => FoodProfileRemoteDataSourceImpl(client: sl()),
+    () => FoodProfileRemoteDataSourceImpl(client: sl()),
   );
 
   sl.registerLazySingleton<FoodProfileLocalDataSource>(
-      () => FoodProfileLocalDataSourceImpl(sharedPreferences: sl()),
+    () => FoodProfileLocalDataSourceImpl(sharedPreferences: sl()),
   );
 
   //! Core

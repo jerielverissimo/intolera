@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import './bloc.dart';
 import 'package:intolera/core/usecases/usecase.dart';
 import 'package:intolera/core/error/failures.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import '../../domain/usecases/get_food_profiles.dart';

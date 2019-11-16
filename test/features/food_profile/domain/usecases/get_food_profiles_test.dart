@@ -1,6 +1,6 @@
-import 'package:intolera/features/text_recognition/domain/repositories/food_profile_repository.dart';
-import 'package:intolera/features/text_recognition/domain/usecases/get_food_profiles.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/domain/repositories/food_profile_repository.dart';
+import 'package:intolera/features/food_profile/domain/usecases/get_food_profiles.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
 import 'package:intolera/core/usecases/usecase.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';

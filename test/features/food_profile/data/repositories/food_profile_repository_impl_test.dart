@@ -1,11 +1,11 @@
 import 'package:intolera/core/error/exceptions.dart';
 import 'package:intolera/core/error/failures.dart';
 import 'package:intolera/core/network/network_info.dart';
-import 'package:intolera/features/text_recognition/data/datasources/food_profile_local_data_source.dart';
-import 'package:intolera/features/text_recognition/data/datasources/food_profile_remote_data_source.dart';
-import 'package:intolera/features/text_recognition/data/repositories/food_profile_repository_impl.dart';
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
-import 'package:intolera/features/text_recognition/domain/entities/food_profile.dart';
+import 'package:intolera/features/food_profile/data/datasources/food_profile_local_data_source.dart';
+import 'package:intolera/features/food_profile/data/datasources/food_profile_remote_data_source.dart';
+import 'package:intolera/features/food_profile/data/repositories/food_profile_repository_impl.dart';
+import 'package:intolera/features/food_profile/data/models/food_profile_model.dart';
+import 'package:intolera/features/food_profile/domain/entities/food_profile.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';

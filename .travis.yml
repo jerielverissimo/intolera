@@ -58,6 +58,7 @@ before_script:
   - gem install coveralls-lcov
 script:
   - flutter doctor
+  - ./flutter/bin/flutter -v test test/* 
   - ./flutter/bin/flutter -v build apk --release
 
 after_success:

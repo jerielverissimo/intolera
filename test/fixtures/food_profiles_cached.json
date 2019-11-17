@@ -1,8 +1,9 @@
-{
-  "category" : "Test",
-  "foodsToExclude": ["food", "drink"],
-  "ingredientsOnLabeling": ["ingredient"],
-  "recipes": ["recipe"],
-  "processedsFoods": ["processed"]
-}
-
+[
+  {
+    "category" : "Test",
+    "foods_to_exclude": ["food", "drink"],
+    "ingredients_on_labeling": ["ingredient"],
+    "recipes": ["recipe"],
+    "processed_foods": ["processed"]
+  }
+]

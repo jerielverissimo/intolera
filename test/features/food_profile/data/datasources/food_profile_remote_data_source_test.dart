@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:matcher/matcher.dart';
-import 'package:intolera/features/text_recognition/data/datasources/food_profile_remote_data_source.dart';
-import 'package:intolera/features/text_recognition/data/transforms/food_profile_transform.dart';
-import 'package:intolera/features/text_recognition/data/models/food_profile_model.dart';
+import 'package:intolera/features/food_profile/data/datasources/food_profile_remote_data_source.dart';
+import 'package:intolera/features/food_profile/data/transforms/food_profile_transform.dart';
+import 'package:intolera/features/food_profile/data/models/food_profile_model.dart';
 import 'package:intolera/core/error/exceptions.dart';
 
 class MockHttpClient extends Mock implements http.Client {}

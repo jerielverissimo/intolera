@@ -40,11 +40,11 @@ class FoodProfileModel extends FoodProfile {
   Map<String, dynamic> toJson() {
     return {
       'category': category,
-      'foodsToExclude': foodsToExclude.map((f) => f.name).toList(),
-      'ingredientsOnLabeling':
+      'foods_to_exclude': foodsToExclude.map((f) => f.name).toList(),
+      'ingredients_on_labeling':
           ingredientsOnLabeling.map((i) => i.name).toList(),
       'recipes': recipes.map((r) => r.name).toList(),
-      'processedsFoods': processedsFoods.map((p) => p.name).toList(),
+      'processed_foods': processedsFoods.map((p) => p.name).toList(),
     };
   }
 }

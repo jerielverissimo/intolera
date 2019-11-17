@@ -1,6 +1,6 @@
 {
   "category" : "Test",
-  "foodsToExclude": ["food", "drink"],
+  "foods_to_exclude": ["food", "drink"],
   "recipes": ["recipe"],
-  "processedsFoods": ["processed"]
+  "processed_foods": ["processed"]
 }

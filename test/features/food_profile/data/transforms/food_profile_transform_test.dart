@@ -32,16 +32,16 @@ void main() {
       // assert
       final expectedMap = [{
         "category": "Test",
-        "foodsToExclude": ["food", "drink"],
-        "ingredientsOnLabeling": ["ingredient"],
+        "foods_to_exclude": ["food", "drink"],
+        "ingredients_on_labeling": ["ingredient"],
         "recipes": ["recipe"],
-        "processedsFoods": ["processed"],
+        "processed_foods": ["processed"],
       },{
         "category": "Test",
-        "foodsToExclude": ["food", "drink"],
-        "ingredientsOnLabeling": ["ingredient"],
+        "foods_to_exclude": ["food", "drink"],
+        "ingredients_on_labeling": ["ingredient"],
         "recipes": ["recipe"],
-        "processedsFoods": ["processed"],
+        "processed_foods": ["processed"],
       }];
 
       expect(result, expectedMap);

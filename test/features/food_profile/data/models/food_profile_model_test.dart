@@ -29,12 +29,9 @@ void main() {
     test('should return a valid model when all the JSON properties is present',
         () async {
       // arrange
-      //final Map<String, dynamic> jsonMap =
-      //json.decode(fixture('food_profile.json'));
-      final jsonMap = json.decode(fixture('food_profiles.json'));
+      final jsonMap = json.decode(fixture('food_profile.json'));
       // act
-      //final result = FoodProfileModel.fromJson(jsonMap);
-      final result = jsonMap.map((p) => FoodProfileModel.fromJson(p)).toList();
+      final result = FoodProfileModel.fromJson(jsonMap);
       // assert
       expect(result, tFoodProfileModel);
     });
@@ -71,10 +68,10 @@ void main() {
       // assert
       final expectedMap = {
         "category": "Test",
-        "foodsToExclude": ["food", "drink"],
-        "ingredientsOnLabeling": ["ingredient"],
+        "foods_to_exclude": ["food", "drink"],
+        "ingredients_on_labeling": ["ingredient"],
         "recipes": ["recipe"],
-        "processedsFoods": ["processed"],
+        "processed_foods": ["processed"],
       };
 
       expect(result, expectedMap);

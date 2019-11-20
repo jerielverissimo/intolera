@@ -38,7 +38,7 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
 
     res.forEach((p) => print(p.category));
     print('SIM!');
-    return profiles;
+    return Right(res);
   }
 
   bool _searchOnCategory(List<String> words, FoodProfile profile) {

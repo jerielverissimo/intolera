@@ -7,7 +7,7 @@ import 'package:intolera/features/text_recognition/data/models/words_model.dart'
 void main() {
   final tWordsModel = FoundedWordsModel(wordsFound: ['bla', 'teste']);
 
-  test('should be a subclass of Words', () async {
+  test('should be a subclass of FoundedWords', () async {
     // assert
     expect(tWordsModel, isA<FoundedWords>());
   });

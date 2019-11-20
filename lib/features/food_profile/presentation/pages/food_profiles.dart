@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../presentation/bloc/food_profile_bloc.dart';
 import '../../presentation/bloc/food_profile_state.dart';
 import '../../presentation/bloc/food_profile_event.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../injection_container.dart';
 
 class FoodProfilePage extends StatefulWidget {
@@ -170,19 +171,5 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
         },
       ),
     );
-    //Center(
-    //child: Card(
-    //child: Column(
-    //mainAxisSize: MainAxisSize.max,
-    //children: <Widget>[
-    //ListTile(
-    //leading: Icon(Icons.album),
-    //title: Text(profile.category),
-    //subtitle: Text('Teste'),
-    //),
-    //],
-    //),
-    //),
-    //);
   }
 }

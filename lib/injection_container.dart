@@ -10,6 +10,8 @@ import 'features/food_profile/data/repositories/food_profile_repository_impl.dar
 import 'features/food_profile/domain/repositories/food_profile_repository.dart';
 import 'features/food_profile/data/datasources/food_profile_remote_data_source.dart';
 import 'features/food_profile/data/datasources/food_profile_local_data_source.dart';
+import 'features/text_recognition/presentation/bloc/text_recognition_bloc.dart';
+import 'features/text_recognition/domain/usecases/find_profiles.dart';
 
 final sl = GetIt.instance;
 
@@ -17,9 +19,11 @@ Future<void> init() async {
   //! Features - Food Profiles
   // Bloc
   sl.registerFactory(() => FoodProfileBloc(profiles: sl()));
+  sl.registerFactory(() => TextRecognizerBloc(profiles: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => GetFoodProfiles(sl()));
+  sl.registerLazySingleton(() => FindProfiles(sl()));
 
   // Repository
   sl.registerLazySingleton<FoodProfileRepository>(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../food_profile/presentation/pages/camera_preview_screen.dart';
+import '../../../text_recognition/presentation/pages/camera_preview_screen.dart';
 import '../../../food_profile/presentation/pages/food_profiles.dart';
 
 class HomePage extends StatefulWidget {

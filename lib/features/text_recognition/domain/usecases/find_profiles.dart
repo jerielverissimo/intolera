@@ -33,7 +33,7 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
     profiles.fold(
       (failure) => [],
       (profiles) =>
-          res = profiles.where((p) => _searchOnCategory(wf, p)).toList(),
+          res = profiles.where((p) => _searchForWords(wf, p)).toList(),
     );
 
     res.forEach((p) => print(p.category));
@@ -41,12 +41,48 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
     return Right(res);
   }
 
+  bool _searchForWords(List<String> words, FoodProfile p) {
+    return _searchOnCategory(words, p);
+    //_searchOnFoodsToExclude(words, p) ||
+    //_searchOnIngredients(words, p) ||
+    //_searchOnRecipes(words, p) ||
+    //_searchOnProcesseds(words, p);
+  }
+
   bool _searchOnCategory(List<String> words, FoodProfile profile) {
-    return words.any((w) => w.contains(RegExp(profile.category.toUpperCase())));
+    return words.any((w) =>
+        w.contains(RegExp(profile.category.toUpperCase())) ||
+        w.contains(RegExp(profile.category.toLowerCase())));
   }
 
   bool _searchOnFoodsToExclude(List<String> words, FoodProfile profiles) {
-    return words.any((w) => profiles.foodsToExclude.any((f) => w == f));
+    return words.any((w) =>
+        profiles.foodsToExclude
+            .any((f) => f.name.toUpperCase().contains(RegExp(w))) ||
+        profiles.foodsToExclude
+            .any((f) => f.name.toLowerCase().contains(RegExp(w))));
+  }
+
+  bool _searchOnIngredients(List<String> words, FoodProfile profiles) {
+    return words.any((w) =>
+        profiles.ingredientsOnLabeling
+            .any((i) => i.name.toUpperCase().contains(RegExp(w))) ||
+        profiles.ingredientsOnLabeling
+            .any((i) => i.name.toLowerCase().contains(RegExp(w))));
+  }
+
+  bool _searchOnRecipes(List<String> words, FoodProfile profiles) {
+    return words.any((w) =>
+        profiles.recipes.any((r) => r.name.toUpperCase().contains(RegExp(w))) ||
+        profiles.recipes.any((r) => r.name.toLowerCase().contains(RegExp(w))));
+  }
+
+  bool _searchOnProcesseds(List<String> words, FoodProfile profiles) {
+    return words.any((w) =>
+        profiles.processedsFoods
+            .any((p) => p.name.toUpperCase().contains(RegExp(w))) ||
+        profiles.processedsFoods
+            .any((p) => p.name.toLowerCase().contains(RegExp(w))));
   }
 }
 

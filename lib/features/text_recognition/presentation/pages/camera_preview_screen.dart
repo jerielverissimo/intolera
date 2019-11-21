@@ -5,6 +5,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'dart:io';
 import 'dart:async';
 
+import 'package:intolera/core/presentation/utilities/styles.dart';
 import 'package:intolera/features/text_recognition/domain/entities/words.dart';
 import '../../presentation/bloc/text_recognition_bloc.dart';
 import '../../presentation/bloc/text_recognition_state.dart';
@@ -21,13 +22,6 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
   FirebaseVisionImage vImage;
   List<String> foundedWords = [];
   int _selectedCategoryIndex = 0;
-
-  final Map<String, int> categories = {
-    'Notes': 112,
-    'Work': 58,
-    'Home': 23,
-    'Complete': 31,
-  };
 
   Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -59,18 +53,28 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
           foundedWords.add(element.text);
         }
       }
+      print('VOU CHAMAR O FILTRAR PERFIL');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final bloc = buildBody(context);
     return Scaffold(
-      body: buildBody(context),
+      body: bloc,
       //body: Center(
       //child: _image == null ? Text('No image selected') : Image.file(_image),
       //),
+      backgroundColor: primaryColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
+        backgroundColor: alertColor,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          getImage();
+
+          BlocProvider.of<TextRecognizerBloc>(context).dispatch(
+              FindFoodListProfiles(FoundedWords(wordsFound: foundedWords)));
+        },
         tooltip: 'Pick Image',
         child: Icon(Icons.add_a_photo),
       ),
@@ -89,22 +93,50 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
               BlocBuilder<TextRecognizerBloc, TextRecognizerState>(
                 builder: (context, state) {
                   if (state is Empty) {
-                    if (!foundedWords.isEmpty) {
-                      BlocProvider.of<TextRecognizerBloc>(context).dispatch(
-                          FindFoodListProfiles(
-                              FoundedWords(wordsFound: foundedWords)));
-                    }
-                    return Center(
+                    //if (!foundedWords.isEmpty) {
+                    //BlocProvider.of<TextRecognizerBloc>(context).dispatch(
+                    //FindFoodListProfiles(
+                    //FoundedWords(wordsFound: foundedWords)));
+                    //}
+                    return Container(
                       child: Row(children: <Widget>[
-                        Text('Empty...'),
-                        FlatButton(
-                          onPressed: () {
-                            BlocProvider.of<TextRecognizerBloc>(context)
-                                .dispatch(FindFoodListProfiles(
-                                    FoundedWords(wordsFound: foundedWords)));
-                          },
-                          child: Text('Teste'),
+                        Center(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 50.0, horizontal: 10.0),
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width * 0.90,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(0, 2),
+                                    blurRadius: 10.0),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: Text(
+                                'Empty',
+                                style: TextStyle(
+                                  color: Colors.black26,
+                                  fontSize: 28.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
+                        //FlatButton(
+                        //onPressed: () {
+                        //BlocProvider.of<TextRecognizerBloc>(context)
+                        //.dispatch(FindFoodListProfiles(
+                        //FoundedWords(wordsFound: foundedWords)));
+                        //},
+                        //child: Text('Teste'),
+                        //),
                       ]),
                     );
                   } else if (state is Loading) {
@@ -126,7 +158,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                           return _buildCategoryCard(
                             index - 1,
                             state.profiles.toList()[index - 1].category,
-                            categories.values.toList()[index - 1],
+                            state.profiles.toList().length,
                           );
                         },
                       ),

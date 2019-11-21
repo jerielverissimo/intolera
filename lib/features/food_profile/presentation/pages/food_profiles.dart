@@ -18,13 +18,6 @@ class FoodProfilePage extends StatefulWidget {
 class _FoodProfilePageState extends State<FoodProfilePage> {
   int _selectedCategoryIndex = 0;
 
-  final Map<String, int> categories = {
-    'Notes': 112,
-    'Work': 58,
-    'Home': 23,
-    'Complete': 31,
-  };
-
   Widget _buildCategoryCard(int index, String title, int count) {
     return GestureDetector(
       onTap: () {
@@ -134,7 +127,7 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
                           return _buildCategoryCard(
                             index - 1,
                             state.profiles.toList()[index - 1].category,
-                            categories.values.toList()[index - 1],
+                            state.profiles.toList().length,
                           );
                         },
                       ),
@@ -149,26 +142,6 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildCard(BuildContext context) {
-    return Container(
-      height: 280.0,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length + 1,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return SizedBox(width: 20.0);
-          }
-          return _buildCategoryCard(
-            index - 1,
-            categories.keys.toList()[index - 1],
-            categories.values.toList()[index - 1],
-          );
-        },
       ),
     );
   }

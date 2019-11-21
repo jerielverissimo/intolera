@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../text_recognition/presentation/pages/camera_preview_screen.dart';
 import '../../../food_profile/presentation/pages/food_profiles.dart';
+import 'package:intolera/core/presentation/utilities/styles.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
       bottomNavigationBar: BottomAppBar(
         notchMargin: 8.0,
         shape: CircularNotchedRectangle(),
@@ -43,7 +45,11 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _buttonAction(Icon(Icons.home), () {}),
             //SizedBox(width: 24.0),
-            _buttonAction(Icon(Icons.assignment), () {}),
+            _buttonAction(
+                Icon(
+                  Icons.assignment,
+                ),
+                () {}),
             SizedBox(width: 52.0),
             _buttonAction(Icon(Icons.assignment), () {
               Navigator.push(
@@ -58,7 +64,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        child: ImageIcon(AssetImage('assets/icons/barcode-scan.png')),
+        child: ImageIcon(
+          AssetImage('assets/icons/barcode-scan.png'),
+          color: Colors.white,
+        ),
+        backgroundColor: alertColor,
         onPressed: () {
           Navigator.push(
             context,

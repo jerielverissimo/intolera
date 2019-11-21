@@ -99,7 +99,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                     //FoundedWords(wordsFound: foundedWords)));
                     //}
                     return Container(
-                      child: Row(children: <Widget>[
+                      child: Column(children: <Widget>[
                         Center(
                           child: Container(
                             margin: EdgeInsets.symmetric(
@@ -129,14 +129,17 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                             ),
                           ),
                         ),
-                        //FlatButton(
-                        //onPressed: () {
-                        //BlocProvider.of<TextRecognizerBloc>(context)
-                        //.dispatch(FindFoodListProfiles(
-                        //FoundedWords(wordsFound: foundedWords)));
-                        //},
-                        //child: Text('Teste'),
-                        //),
+                        FlatButton(
+                          onPressed: () {
+                            BlocProvider.of<TextRecognizerBloc>(context)
+                                .dispatch(FindFoodListProfiles(
+                                    FoundedWords(wordsFound: foundedWords)));
+                          },
+                          child: Text(
+                            'PESQUISAR',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ]),
                     );
                   } else if (state is Loading) {

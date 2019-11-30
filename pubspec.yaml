@@ -22,6 +22,8 @@ dependencies:
   dartz: ^0.8.6
   firebase_ml_vision:
   logger: 0.7.0+2
+  firebase_auth: 0.15.0+1
+  google_sign_in: 4.0.14
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,7 @@ flutter:
    - assets/logos/facebook.jpg
    - assets/logos/google.jpg
    - assets/icons/barcode-scan.png
+   - assets/backgrounds/egg.jpg
 
   fonts:
     - family: OpenSans

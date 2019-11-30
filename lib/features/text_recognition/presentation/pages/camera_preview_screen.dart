@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import '../../presentation/bloc/text_recognition_bloc.dart';
 import '../../presentation/bloc/text_recognition_state.dart';
 import '../../presentation/bloc/text_recognition_event.dart';
 import '../../../../injection_container.dart';
+import './detail_screen.dart';
 
 class CameraPreviewScreen extends StatefulWidget {
   @override
@@ -21,6 +24,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
   File _image;
   FirebaseVisionImage vImage;
   List<String> foundedWords = [];
+  StringBuffer capturedWords = StringBuffer();
   int _selectedCategoryIndex = 0;
 
   Future getImage() async {
@@ -50,10 +54,12 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
         // Same getters as TextBlock
         for (TextElement element in line.elements) {
           // Same getters as TextBlock
-          foundedWords.add(element.text);
+          capturedWords.write(" " + element.text);
         }
       }
+      foundedWords.add(capturedWords.toString());
       print('VOU CHAMAR O FILTRAR PERFIL');
+      print(foundedWords);
     }
   }
 
@@ -93,11 +99,6 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
               BlocBuilder<TextRecognizerBloc, TextRecognizerState>(
                 builder: (context, state) {
                   if (state is Empty) {
-                    //if (!foundedWords.isEmpty) {
-                    //BlocProvider.of<TextRecognizerBloc>(context).dispatch(
-                    //FindFoodListProfiles(
-                    //FoundedWords(wordsFound: foundedWords)));
-                    //}
                     return Container(
                       child: Column(children: <Widget>[
                         Center(
@@ -119,7 +120,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                             child: Padding(
                               padding: EdgeInsets.all(20.0),
                               child: Text(
-                                'Empty',
+                                'Vazio',
                                 style: TextStyle(
                                   color: Colors.black26,
                                   fontSize: 28.0,
@@ -144,8 +145,26 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                     );
                   } else if (state is Loading) {
                     print('Entrou no estado de LOADING');
-                    return Center(
-                      child: Text('Loading...'),
+                    return SafeArea(
+                      child: Center(
+                        //width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                            ),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              "Loading",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      ),
                     );
                   } else if (state is Loaded) {
                     print('Entrou no estado de LOADED');
@@ -185,6 +204,8 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
       onTap: () {
         setState(() {
           _selectedCategoryIndex = index;
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DetailScreen(title, "")));
         });
       },
       child: Container(
@@ -218,19 +239,6 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                       ? Colors.white
                       : Color(0xFFAFB4C6),
                   fontSize: 28.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text(
-                count.toString(),
-                style: TextStyle(
-                  color: _selectedCategoryIndex == index
-                      ? Colors.white
-                      : Colors.black,
-                  fontSize: 35.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),

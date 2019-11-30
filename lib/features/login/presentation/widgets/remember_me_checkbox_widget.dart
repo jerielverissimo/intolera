@@ -15,14 +15,14 @@ class RememberMeCheckboxWidget {
           Theme(
             data: ThemeData(unselectedWidgetColor: Colors.white),
             child: Checkbox(
-                value: rememberMe,
-                checkColor: Colors.green,
-                activeColor: Colors.white,
-                onChanged: this.stateSetter,
+              value: rememberMe,
+              checkColor: Colors.green,
+              activeColor: Colors.white,
+              onChanged: this.stateSetter,
             ),
           ),
           Text(
-            'Remember Me',
+            'Lembrar de mim',
             style: kLabelStyle,
           ),
         ],
@@ -30,4 +30,3 @@ class RememberMeCheckboxWidget {
     );
   }
 }
-

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../../core/presentation/utilities/styles.dart';
 import '../../../dashboard/presentation/pages/dashboard_screen.dart';
+import 'package:intolera/core/authentication/firebase_auth.dart';
 
 class LoginButton extends StatelessWidget {
+  final String _email;
+  final String _password;
+
+  LoginButton(this._email, this._password);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,7 +16,8 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () {
+        onPressed: () async {
+          bool res = await AuthProvider().signInWithEmail(_email, _password);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => HomePage()),

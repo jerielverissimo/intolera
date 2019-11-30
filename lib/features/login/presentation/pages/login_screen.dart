@@ -13,6 +13,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreen extends State<LoginScreen> {
   bool _rememberMe = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
@@ -32,9 +35,9 @@ class _LoginScreen extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(height: 30.0),
-                    email_input_text,
+                    EmailInputText(_emailController),
                     SizedBox(height: 30.0),
-                    password_input,
+                    PasswordInput(_passwordController),
                     forgot_password_button_widget,
                     RememberMeCheckboxWidget((value) {
                       setState(() {
@@ -42,7 +45,8 @@ class _LoginScreen extends State<LoginScreen> {
                       });
                     }, _rememberMe)
                         .buildRemeberMeCheckbox(),
-                    LoginButton(),
+                    LoginButton(
+                        _emailController.text, _passwordController.text),
                   ],
                 ),
               ),

@@ -12,6 +12,7 @@ import 'package:intolera/features/food_profile/domain/usecases/get_food_profiles
 class FindProfiles implements UseCase<List<FoodProfile>, Params> {
   final GetFoodProfiles usecase;
   final logger = Logger();
+  final regex = r"(s\b|\b)";
 
   Either<Failure, List<FoodProfile>> profiles;
 
@@ -42,47 +43,37 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
   }
 
   bool _searchForWords(List<String> words, FoodProfile p) {
-    return _searchOnCategory(words, p);
-    //_searchOnFoodsToExclude(words, p) ||
-    //_searchOnIngredients(words, p) ||
-    //_searchOnRecipes(words, p) ||
-    //_searchOnProcesseds(words, p);
+    return _searchOnCategory(words, p) ||
+        _searchOnFoodsToExclude(words, p) ||
+        _searchOnIngredients(words, p) ||
+        _searchOnRecipes(words, p) ||
+        _searchOnProcesseds(words, p);
   }
 
   bool _searchOnCategory(List<String> words, FoodProfile profile) {
-    return words.any((w) =>
-        w.contains(RegExp(profile.category.toUpperCase())) ||
-        w.contains(RegExp(profile.category.toLowerCase())));
+    return words.any((w) => w.contains(RegExp(
+        "(" + profile.category + ")" + regex,
+        caseSensitive: false)));
   }
 
-  bool _searchOnFoodsToExclude(List<String> words, FoodProfile profiles) {
-    return words.any((w) =>
-        profiles.foodsToExclude
-            .any((f) => f.name.toUpperCase().contains(RegExp(w))) ||
-        profiles.foodsToExclude
-            .any((f) => f.name.toLowerCase().contains(RegExp(w))));
+  bool _searchOnFoodsToExclude(List<String> words, FoodProfile profile) {
+    return words.any((w) => profile.foodsToExclude.any((f) => w.contains(
+        RegExp("(" + f.name + ")" + regex, caseSensitive: false))));
   }
 
-  bool _searchOnIngredients(List<String> words, FoodProfile profiles) {
-    return words.any((w) =>
-        profiles.ingredientsOnLabeling
-            .any((i) => i.name.toUpperCase().contains(RegExp(w))) ||
-        profiles.ingredientsOnLabeling
-            .any((i) => i.name.toLowerCase().contains(RegExp(w))));
+  bool _searchOnIngredients(List<String> words, FoodProfile profile) {
+    return words.any((w) => profile.ingredientsOnLabeling.any((i) => w.contains(
+        RegExp("(" + i.name + ")" + regex, caseSensitive: false))));
   }
 
-  bool _searchOnRecipes(List<String> words, FoodProfile profiles) {
-    return words.any((w) =>
-        profiles.recipes.any((r) => r.name.toUpperCase().contains(RegExp(w))) ||
-        profiles.recipes.any((r) => r.name.toLowerCase().contains(RegExp(w))));
+  bool _searchOnRecipes(List<String> words, FoodProfile profile) {
+    return words.any((w) => profile.recipes.any((r) => w.contains(
+        RegExp("(" + r.name + ")" + regex, caseSensitive: false))));
   }
 
-  bool _searchOnProcesseds(List<String> words, FoodProfile profiles) {
-    return words.any((w) =>
-        profiles.processedsFoods
-            .any((p) => p.name.toUpperCase().contains(RegExp(w))) ||
-        profiles.processedsFoods
-            .any((p) => p.name.toLowerCase().contains(RegExp(w))));
+  bool _searchOnProcesseds(List<String> words, FoodProfile profile) {
+    return words.any((w) => profile.processedsFoods.any((p) => w.contains(
+        RegExp("(" + p.name + ")" + regex, caseSensitive: false))));
   }
 }
 

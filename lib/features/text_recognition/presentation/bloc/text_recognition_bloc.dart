@@ -23,6 +23,9 @@ class TextRecognizerBloc
       : assert(profiles != null),
         findProfiles = profiles;
 
+  void onFindFoodListProfiles(FoundedWords foundedWords) => dispatch(
+      FindFoodListProfiles(FoundedWords(wordsFound: foundedWords.wordsFound)));
+
   @override
   TextRecognizerState get initialState => Empty();
 

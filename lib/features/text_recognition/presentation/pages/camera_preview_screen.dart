@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:logger/logger.dart';
 import 'dart:io';
 import 'dart:async';
 
-import 'package:intolera/core/presentation/utilities/styles.dart';
 import 'package:intolera/features/text_recognition/domain/entities/words.dart';
 import '../../presentation/bloc/text_recognition_bloc.dart';
 import '../../presentation/bloc/text_recognition_state.dart';
 import '../../presentation/bloc/text_recognition_event.dart';
 import '../../../../injection_container.dart';
 import './detail_screen.dart';
+import '../widgets/speed_dial_buttons_widget.dart';
 
 class CameraPreviewScreen extends StatefulWidget {
   @override
@@ -26,17 +26,10 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
   FirebaseVisionImage vImage;
   List<String> foundedWords = [];
   StringBuffer capturedWords = StringBuffer();
+  final logger = Logger();
   int _selectedCategoryIndex = 0;
-
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-
-    setState(() async {
-      _image = image;
-      vImage = FirebaseVisionImage.fromFile(_image);
-      readText();
-    });
-  }
+  final mainBloc = sl<TextRecognizerBloc>();
+  var bloc;
 
   Future getImageFromGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -44,7 +37,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
     setState(() async {
       _image = image;
       vImage = FirebaseVisionImage.fromFile(_image);
-      readText();
+      await readText();
     });
   }
 
@@ -54,13 +47,13 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
     setState(() async {
       _image = image;
       vImage = FirebaseVisionImage.fromFile(_image);
-      readText();
+      await readText();
     });
   }
 
   Future readText() async {
     if (_image == null) {
-      print("Imagem nula");
+      logger.d('[CameraPreviewScreen] - Empty image');
     }
     TextRecognizer recognizeText = FirebaseVision.instance.textRecognizer();
     VisionText visionText = await recognizeText.processImage(vImage);
@@ -80,61 +73,23 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
       }
       foundedWords.add(capturedWords.toString());
       print('VOU CHAMAR O FILTRAR PERFIL');
-      print(foundedWords);
     }
+
+    print(foundedWords);
+    mainBloc.onFindFoodListProfiles(FoundedWords(wordsFound: foundedWords));
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = buildBody(context);
-    return Scaffold(
-      body: bloc,
-      backgroundColor: primaryColor,
-      floatingActionButton: SpeedDial(
-        // both default to 16
-        marginRight: 18,
-        marginBottom: 20,
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22.0),
-        // this is ignored if animatedIcon is non null
-        // child: Icon(Icons.add),
-        visible: true,
-        // If true user is forced to close dial manually
-        // by tapping main button and overlay is not rendered.
-        closeManually: false,
-        curve: Curves.bounceIn,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.5,
-        onOpen: () => print('OPENING DIAL'),
-        onClose: () => print('DIAL CLOSED'),
-        tooltip: 'Speed Dial',
-        heroTag: 'speed-dial-hero-tag',
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 8.0,
-        shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-              child: Icon(Icons.add_a_photo, color: Colors.white),
-              backgroundColor: alertColor,
-              label: 'Camera',
-              labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () => getImageFromCamera()),
-          SpeedDialChild(
-            child: Icon(Icons.add_photo_alternate, color: Colors.white),
-            backgroundColor: alertColor,
-            label: 'Galeria de fotos',
-            labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => getImageFromGallery(),
-          ),
-        ],
-      ),
-    );
+    return CameraButtons(
+        bloc: buildBody(context),
+        getImageFromCamera: getImageFromCamera,
+        getImageFromGallery: getImageFromGallery);
   }
 
   BlocProvider<TextRecognizerBloc> buildBody(BuildContext context) {
     return BlocProvider(
-      builder: (_) => sl<TextRecognizerBloc>(),
+      builder: (_) => mainBloc,
       child: Center(
         child: Padding(
           padding: EdgeInsets.all(10),
@@ -175,17 +130,6 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                             ),
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {
-                            BlocProvider.of<TextRecognizerBloc>(context)
-                                .dispatch(FindFoodListProfiles(
-                                    FoundedWords(wordsFound: foundedWords)));
-                          },
-                          child: Text(
-                            'PESQUISAR',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
                       ]),
                     );
                   } else if (state is Loading) {
@@ -216,7 +160,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                     return Container(
                       height: 280.0,
                       child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.vertical,
                         itemCount: state.profiles.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == 0) {

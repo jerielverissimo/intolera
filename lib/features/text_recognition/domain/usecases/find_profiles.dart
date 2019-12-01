@@ -42,14 +42,14 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
     return Right(res);
   }
 
-  bool _matchBlackList(List<String> words, FoodProfile profile) {
+  bool _inBlackList(List<String> words, FoodProfile profile) {
     return words.any((w) => profile.foodsToExclude.any(
         (_) => w.contains(RegExp("en polvo" + regex, caseSensitive: false))));
   }
 
   bool _searchForWords(List<String> words, FoodProfile p) {
     return _searchOnCategory(words, p) ||
-        _searchOnFoodsToExclude(words, p) && !_matchBlackList(words, p) ||
+        _searchOnFoodsToExclude(words, p) && !_inBlackList(words, p) ||
         _searchOnIngredients(words, p) ||
         _searchOnRecipes(words, p) ||
         _searchOnProcesseds(words, p);

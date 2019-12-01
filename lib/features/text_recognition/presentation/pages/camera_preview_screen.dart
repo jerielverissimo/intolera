@@ -11,7 +11,6 @@ import 'dart:async';
 import 'package:intolera/features/text_recognition/domain/entities/words.dart';
 import '../../presentation/bloc/text_recognition_bloc.dart';
 import '../../presentation/bloc/text_recognition_state.dart';
-import '../../presentation/bloc/text_recognition_event.dart';
 import '../../../../injection_container.dart';
 import './detail_screen.dart';
 import '../widgets/speed_dial_buttons_widget.dart';
@@ -157,8 +156,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                     );
                   } else if (state is Loaded) {
                     print('Entrou no estado de LOADED');
-                    return Container(
-                      height: 280.0,
+                    return Expanded(
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount: state.profiles.length + 1,
@@ -199,7 +197,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-        height: 240.0,
+        height: 140.0,
         width: 175.0,
         decoration: BoxDecoration(
           color: _selectedCategoryIndex == index

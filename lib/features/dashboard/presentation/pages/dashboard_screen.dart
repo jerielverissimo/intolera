@@ -43,22 +43,30 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _buttonAction(Icon(Icons.home), () {}),
+            //_buttonAction(Icon(Icons.home), () {}),
             //SizedBox(width: 24.0),
+            //_buttonAction(
+            //Icon(
+            //Icons.assignment,
+            //),
+            //() {}),
             _buttonAction(
                 Icon(
                   Icons.assignment,
-                ),
-                () {}),
-            SizedBox(width: 52.0),
-            _buttonAction(Icon(Icons.assignment), () {
+                  size: 28.0,
+                ), () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => FoodProfilePage()),
               );
             }),
-            //SizedBox(width: 24.0),
-            _buttonAction(Icon(Icons.person), () {}),
+            SizedBox(width: 100.0),
+            _buttonAction(
+                Icon(
+                  Icons.person,
+                  size: 28.0,
+                ),
+                () {}),
           ],
         ),
       ),

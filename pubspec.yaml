@@ -39,6 +39,7 @@ flutter:
    - assets/logos/google.jpg
    - assets/icons/barcode-scan.png
    - assets/backgrounds/egg.jpg
+   - assets/backgrounds/wheat-field.jpg
 
   fonts:
     - family: OpenSans

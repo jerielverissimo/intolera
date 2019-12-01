@@ -89,9 +89,6 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
     final bloc = buildBody(context);
     return Scaffold(
       body: bloc,
-      //body: Center(
-      //child: _image == null ? Text('No image selected') : Image.file(_image),
-      //),
       backgroundColor: primaryColor,
       floatingActionButton: SpeedDial(
         // both default to 16

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:intolera/core/presentation/utilities/styles.dart';
 import '../../presentation/bloc/food_profile_bloc.dart';
 import '../../presentation/bloc/food_profile_state.dart';
 import '../../presentation/bloc/food_profile_event.dart';
@@ -25,58 +26,18 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
           _selectedCategoryIndex = index;
         });
       },
-      child: //Container(
-          //margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          //child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //crossAxisAlignment: CrossAxisAlignment.start,
-          //children: <Widget>[
-          ////ClipRRect(
-          ////borderRadius: BorderRadius.circular(20.0),
-          ////child: Image(
-          ////image: AssetImage("assets/backgrounds/egg.jpg"),
-          ////),
-          ////),
-          //Padding(
-          //padding: EdgeInsets.all(20.0),
-          //child: Text(
-          //title,
-          //style: TextStyle(
-          //color: _selectedCategoryIndex == index
-          //? Colors.white
-          //: Color(0xFFAFB4C6),
-          //fontSize: 28.0,
-          //fontWeight: FontWeight.bold,
-          //),
-          //),
-          //),
-          //],
-          //),
-          //decoration: BoxDecoration(
-          //color: _selectedCategoryIndex == index
-          //? Color(0xFF417BFB)
-          //: Color(0xFFF5F7FB),
-          //borderRadius: BorderRadius.circular(20.0),
-          //boxShadow: [
-          //_selectedCategoryIndex == index
-          //? BoxShadow(
-          //color: Colors.black26,
-          //offset: Offset(0, 2),
-          //blurRadius: 10.0)
-          //: BoxShadow(color: Colors.transparent),
-          //],
-          //),
-          //),
-
-          Container(
+      child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-        height: 240.0,
+        height: 140.0,
         width: 175.0,
         decoration: BoxDecoration(
           color: _selectedCategoryIndex == index
               ? Color(0xFF417BFB)
               : Color(0xFFF5F7FB),
           borderRadius: BorderRadius.circular(20.0),
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage("assets/backgrounds/wheat-field.jpg")),
           boxShadow: [
             _selectedCategoryIndex == index
                 ? BoxShadow(
@@ -96,7 +57,7 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
                 title,
                 style: TextStyle(
                   color: _selectedCategoryIndex == index
-                      ? Colors.white
+                      ? primaryColor
                       : Color(0xFFAFB4C6),
                   fontSize: 28.0,
                   fontWeight: FontWeight.bold,
@@ -116,6 +77,7 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
         title: Text('Perfis de Restrições'),
       ),
       body: buildBody(context),
+      //backgroundColor: primaryColor,
     );
   }
 
@@ -140,15 +102,31 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
                     );
                   } else if (state is Loading) {
                     print('Entrou no estado de LOADING');
-                    return Center(
-                      child: Text('Loading...'),
+                    return SafeArea(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                            ),
+                            const SizedBox(height: 10.0),
+                            Text(
+                              "Carregando...",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      ),
                     );
                   } else if (state is Loaded) {
                     print('Entrou no estado de LOADED');
-                    return Container(
-                      height: 280.0,
+                    return Expanded(
                       child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.vertical,
                         itemCount: state.profiles.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == 0) {

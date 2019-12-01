@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'dart:io';
 import 'dart:async';
 
@@ -28,6 +29,26 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
   int _selectedCategoryIndex = 0;
 
   Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+
+    setState(() async {
+      _image = image;
+      vImage = FirebaseVisionImage.fromFile(_image);
+      readText();
+    });
+  }
+
+  Future getImageFromGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() async {
+      _image = image;
+      vImage = FirebaseVisionImage.fromFile(_image);
+      readText();
+    });
+  }
+
+  Future getImageFromCamera() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
 
     setState(() async {
@@ -72,17 +93,44 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
       //child: _image == null ? Text('No image selected') : Image.file(_image),
       //),
       backgroundColor: primaryColor,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: alertColor,
-        foregroundColor: Colors.white,
-        onPressed: () {
-          getImage();
-
-          BlocProvider.of<TextRecognizerBloc>(context).dispatch(
-              FindFoodListProfiles(FoundedWords(wordsFound: foundedWords)));
-        },
-        tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
+      floatingActionButton: SpeedDial(
+        // both default to 16
+        marginRight: 18,
+        marginBottom: 20,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22.0),
+        // this is ignored if animatedIcon is non null
+        // child: Icon(Icons.add),
+        visible: true,
+        // If true user is forced to close dial manually
+        // by tapping main button and overlay is not rendered.
+        closeManually: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: () => print('OPENING DIAL'),
+        onClose: () => print('DIAL CLOSED'),
+        tooltip: 'Speed Dial',
+        heroTag: 'speed-dial-hero-tag',
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 8.0,
+        shape: CircleBorder(),
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.add_a_photo, color: Colors.white),
+              backgroundColor: alertColor,
+              label: 'Camera',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => getImageFromCamera()),
+          SpeedDialChild(
+            child: Icon(Icons.add_photo_alternate, color: Colors.white),
+            backgroundColor: alertColor,
+            label: 'Galeria de fotos',
+            labelStyle: TextStyle(fontSize: 18.0),
+            onTap: () => getImageFromGallery(),
+          ),
+        ],
       ),
     );
   }

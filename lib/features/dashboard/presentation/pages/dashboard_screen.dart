@@ -69,6 +69,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
         ),
         backgroundColor: alertColor,
+        heroTag: 'speed-dial-hero-tag',
         onPressed: () {
           Navigator.push(
             context,

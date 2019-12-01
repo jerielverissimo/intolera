@@ -42,38 +42,42 @@ class FindProfiles implements UseCase<List<FoodProfile>, Params> {
     return Right(res);
   }
 
+  bool _matchBlackList(List<String> words, FoodProfile profile) {
+    return words.any((w) => profile.foodsToExclude.any(
+        (_) => w.contains(RegExp("en polvo" + regex, caseSensitive: false))));
+  }
+
   bool _searchForWords(List<String> words, FoodProfile p) {
     return _searchOnCategory(words, p) ||
-        _searchOnFoodsToExclude(words, p) ||
+        _searchOnFoodsToExclude(words, p) && !_matchBlackList(words, p) ||
         _searchOnIngredients(words, p) ||
         _searchOnRecipes(words, p) ||
         _searchOnProcesseds(words, p);
   }
 
   bool _searchOnCategory(List<String> words, FoodProfile profile) {
-    return words.any((w) => w.contains(RegExp(
-        "(" + profile.category + ")" + regex,
-        caseSensitive: false)));
+    return words.any((w) => w.contains(
+        RegExp("(" + profile.category + ")" + regex, caseSensitive: false)));
   }
 
   bool _searchOnFoodsToExclude(List<String> words, FoodProfile profile) {
-    return words.any((w) => profile.foodsToExclude.any((f) => w.contains(
-        RegExp("(" + f.name + ")" + regex, caseSensitive: false))));
+    return words.any((w) => profile.foodsToExclude.any((f) =>
+        w.contains(RegExp("(" + f.name + ")" + regex, caseSensitive: false))));
   }
 
   bool _searchOnIngredients(List<String> words, FoodProfile profile) {
-    return words.any((w) => profile.ingredientsOnLabeling.any((i) => w.contains(
-        RegExp("(" + i.name + ")" + regex, caseSensitive: false))));
+    return words.any((w) => profile.ingredientsOnLabeling.any((i) =>
+        w.contains(RegExp("(" + i.name + ")" + regex, caseSensitive: false))));
   }
 
   bool _searchOnRecipes(List<String> words, FoodProfile profile) {
-    return words.any((w) => profile.recipes.any((r) => w.contains(
-        RegExp("(" + r.name + ")" + regex, caseSensitive: false))));
+    return words.any((w) => profile.recipes.any((r) =>
+        w.contains(RegExp("(" + r.name + ")" + regex, caseSensitive: false))));
   }
 
   bool _searchOnProcesseds(List<String> words, FoodProfile profile) {
-    return words.any((w) => profile.processedsFoods.any((p) => w.contains(
-        RegExp("(" + p.name + ")" + regex, caseSensitive: false))));
+    return words.any((w) => profile.processedsFoods.any((p) =>
+        w.contains(RegExp("(" + p.name + ")" + regex, caseSensitive: false))));
   }
 }
 

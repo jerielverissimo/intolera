@@ -35,9 +35,9 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
               ? Color(0xFF417BFB)
               : Color(0xFFF5F7FB),
           borderRadius: BorderRadius.circular(20.0),
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage("assets/backgrounds/wheat-field.jpg")),
+          //image: DecorationImage(
+          //fit: BoxFit.cover,
+          //image: AssetImage("assets/backgrounds/wheat-field.jpg")),
           boxShadow: [
             _selectedCategoryIndex == index
                 ? BoxShadow(

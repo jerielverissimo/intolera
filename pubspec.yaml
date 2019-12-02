@@ -37,6 +37,7 @@ flutter:
   assets:
    - assets/logos/facebook.jpg
    - assets/logos/google.jpg
+   - assets/logos/intolera.png
    - assets/icons/barcode-scan.png
    - assets/backgrounds/egg.jpg
    - assets/backgrounds/wheat-field.jpg

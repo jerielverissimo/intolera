@@ -3,8 +3,7 @@ import '../../../../core/presentation/utilities/styles.dart';
 import '../widgets/email_input_text_widget.dart';
 import '../widgets/password_input_widget.dart';
 import '../widgets/login_button_widget.dart';
-import '../widgets/forgot_password_button_widget.dart';
-import '../widgets/remember_me_checkbox_widget.dart';
+import '../widgets/social_button_row_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -12,9 +11,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  bool _rememberMe = false;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController;
+  TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +43,9 @@ class _LoginScreen extends State<LoginScreen> {
                     EmailInputText(_emailController),
                     SizedBox(height: 30.0),
                     PasswordInput(_passwordController),
-                    forgot_password_button_widget,
-                    RememberMeCheckboxWidget((value) {
-                      setState(() {
-                        _rememberMe = value;
-                      });
-                    }, _rememberMe)
-                        .buildRemeberMeCheckbox(),
                     LoginButton(
                         _emailController.text, _passwordController.text),
+                    social_button_row
                   ],
                 ),
               ),

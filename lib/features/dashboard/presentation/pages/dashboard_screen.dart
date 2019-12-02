@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../text_recognition/presentation/pages/camera_preview_screen.dart';
 import '../../../food_profile/presentation/pages/food_profiles.dart';
+import '../../../user_profile/presentation/pages/profile.dart';
 import 'package:intolera/core/presentation/utilities/styles.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _controller = PageController(
+    this._controller = PageController(
       initialPage: currentPage,
       viewportFraction: 0.4,
     );
@@ -43,13 +44,6 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            //_buttonAction(Icon(Icons.home), () {}),
-            //SizedBox(width: 24.0),
-            //_buttonAction(
-            //Icon(
-            //Icons.assignment,
-            //),
-            //() {}),
             _buttonAction(
                 Icon(
                   Icons.assignment,
@@ -65,8 +59,12 @@ class _HomePageState extends State<HomePage> {
                 Icon(
                   Icons.person,
                   size: 28.0,
-                ),
-                () {}),
+                ), () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfilePage()),
+              );
+            }),
           ],
         ),
       ),

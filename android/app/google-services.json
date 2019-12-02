@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "529209989872-hsmmdsg3o6gi8rvbqe1nfpolsulm66mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifsp.intolera",
+            "certificate_hash": "fa178739c1e42864bfe95e101e7a85e7f9287bcf"
+          }
+        },
+        {
           "client_id": "529209989872-8qph9akvbvhq2d09laf7k6n332vvd37p.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +38,13 @@
             {
               "client_id": "529209989872-8qph9akvbvhq2d09laf7k6n332vvd37p.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "529209989872-9oiam12161mgobj35o3drj4bqk1iaj65.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.edu.ifsp.intolera"
+              }
             }
           ]
         }

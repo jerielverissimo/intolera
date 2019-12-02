@@ -74,7 +74,7 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
       print('VOU CHAMAR O FILTRAR PERFIL');
     }
 
-    print(foundedWords);
+    logger.d(foundedWords);
     mainBloc.onFindFoodListProfiles(FoundedWords(wordsFound: foundedWords));
   }
 

@@ -121,9 +121,9 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                                   Padding(
                                     padding: EdgeInsets.all(15.0),
                                     child: Text(
-                                      'Busca de categorias',
+                                      'Busca por categorias',
                                       style: TextStyle(
-                                        color: Colors.black45,
+                                        color: Colors.black54,
                                         fontSize: 28.0,
                                         fontWeight: FontWeight.bold,
                                       ),

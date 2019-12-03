@@ -74,7 +74,7 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfis de Restrições'),
+        title: Text('Categorias de Restrições'),
       ),
       body: buildBody(context),
       //backgroundColor: primaryColor,

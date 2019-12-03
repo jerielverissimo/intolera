@@ -57,7 +57,7 @@ class _FoodProfilePageState extends State<FoodProfilePage> {
                 title,
                 style: TextStyle(
                   color: _selectedCategoryIndex == index
-                      ? primaryColor
+                      ? Colors.white
                       : Color(0xFFAFB4C6),
                   fontSize: 28.0,
                   fontWeight: FontWeight.bold,

@@ -102,32 +102,47 @@ class _CameraPreviewScreen extends State<CameraPreviewScreen> {
                       child: Column(children: <Widget>[
                         Center(
                           child: Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 50.0, horizontal: 10.0),
-                            height: MediaQuery.of(context).size.height / 2,
-                            width: MediaQuery.of(context).size.width * 0.90,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(0, 2),
-                                    blurRadius: 10.0),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(20.0),
-                              child: Text(
-                                'Vazio',
-                                style: TextStyle(
-                                  color: Colors.black26,
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 50.0, horizontal: 10.0),
+                              height: 200.0,
+                              width: MediaQuery.of(context).size.width * 0.90,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black26,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 10.0),
+                                ],
                               ),
-                            ),
-                          ),
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(15.0),
+                                    child: Text(
+                                      'Busca de categorias',
+                                      style: TextStyle(
+                                        color: Colors.black45,
+                                        fontSize: 28.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(20.0),
+                                    child: Text(
+                                      'Para efetuar uma busca por categorias de restrições alimentar, basta tirar uma foto do rótulo.',
+                                      style: TextStyle(
+                                        color: Colors.black45,
+                                        fontSize: 18.0,
+                                        //fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ),
+                                ],
+                              )),
                         ),
                       ]),
                     );
